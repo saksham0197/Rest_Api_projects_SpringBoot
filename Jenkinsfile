@@ -18,19 +18,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                bat 'mvn clean install'
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarCloud') {
-                    withCredentials([string(credentialsId: 'sonar_secret', variable: 'sonar_secret')]) {
-                        sh "mvn sonar:sonar \
-                            -Dsonar.projectKey=saksham0197_Rest_Api_projects_SpringBoot \
-                            -Dsonar.organization=saksham0197 \
-                            -Dsonar.host.url=https://sonarcloud.io \
-                            -Dsonar.login=${SONAR_TOKEN}"
+                    withCredentials([string(credentialsId: 'sonar_secret', variable: 'SONAR_TOKEN')]) {
+                        bat "mvn sonar:sonar ^ 
+                            -Dsonar.projectKey=saksham0197_Rest_Api_projects_SpringBoot ^ 
+                            -Dsonar.organization=saksham0197 ^ 
+                            -Dsonar.host.url=https://sonarcloud.io ^ 
+                            -Dsonar.login=%SONAR_TOKEN%"
                     }
                 }
             }
