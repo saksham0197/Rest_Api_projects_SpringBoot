@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/your-repo/your-project.git', branch: 'main'
+                git url: 'https://github.com/saksham0197/Rest_Api_projects_SpringBoot.git', branch: 'main'
             }
         }
 
@@ -25,10 +25,10 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarCloud') {
-                    withCredentials([string(credentialsId: 'sonarcloud-token', variable: 'SONAR_TOKEN')]) {
+                    withCredentials([string(credentialsId: 'sonar_secret', variable: 'sonar_secret')]) {
                         sh "mvn sonar:sonar \
-                            -Dsonar.projectKey=your-project-key \
-                            -Dsonar.organization=your-organization \
+                            -Dsonar.projectKey=saksham0197_Rest_Api_projects_SpringBoot \
+                            -Dsonar.organization=saksham0197 \
                             -Dsonar.host.url=https://sonarcloud.io \
                             -Dsonar.login=${SONAR_TOKEN}"
                     }
