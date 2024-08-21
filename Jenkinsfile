@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        SONARQUBE_SCANNER_HOME = tool name: 'SonarQube Scanner'
+        SONARQUBE_SCANNER_HOME = tool name: 'SonarScanner'
     }
 
     stages {
